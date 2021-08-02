@@ -1,0 +1,224 @@
+<!-- 
+Disclaimer: RUN ON CHROME, Scripts are not loading on eclipse internal browser!!!!!!
+Eclipse >> Windows >> WebBrowser >> Chrome 
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Invoice Management - Neev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header id="header">
+      <div class="nav-logo">
+        <div class="logo">
+          <img src="assets\images\logo1.png" alt="nav-icon" class="nav-icon" />
+        </div>
+        <div class="nav-text">ABC Products</div>
+      </div>
+      <div class="main-logo">
+        <img src="assets\images\logo.svg" alt="main-icon" class="main-icon" />
+      </div>
+    </header>
+
+    <!-- content -->
+    <main>
+      <section class="landing">
+        <h1 class="innerheading">Invoice List</h1>
+        <div class="lower-box">
+          <div class="functions">
+            <button class="filter-button predict-btn">Predict</button>
+
+            <button class="filter-button add-btn">
+              <img
+                src="assets\images\Path 18189.svg"
+                alt="add"
+                class="f-icons"
+              />
+              Add
+            </button>
+            <button class="filter-button edit-btn">
+              <img
+                src="assets\images\Path 18191.svg"
+                alt="edit"
+                class="f-icons"
+              />
+              Edit
+            </button>
+            <button class="filter-button">
+              <img
+                src="assets\images\Path 18189-1.svg"
+                alt="delete"
+                class="f-icons"
+              />
+              Delete
+            </button>
+            <input
+              type="text"
+              class="search"
+              id="myInput"
+              placeholder="Search by Invoice Number"
+            />
+          </div>
+          <table class="table" id="myTable">
+            <thead>
+              <tr>
+                <th><input class="cb-header" type="checkbox" /></th>
+                <th>Customer Name</th>
+                <th>Customer Number</th>
+                <th>Invoice Number</th>
+                <th>Invoice Amount</th>
+                <th>Due Date</th>
+                <th>Predicted payment dates</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody class="data-load"></tbody>
+          </table>
+        </div>
+      </section>
+      <!-- modals -->
+      <section id="overlay">
+        <!-- add modal-->
+        <!-- action="/H2HBABBA1062/add" -->
+        <form class="modal" action="insert">
+          <div class="modal-header">
+            <div class="modal-heading">Add Invoice</div>
+            <div class="modal-icon modal-close-btn">
+              <img
+                src="./assets/images/baseline-close-24px.svg"
+                alt=""
+                class="modal-img"
+              />
+            </div>
+          </div>
+          <div class="modal-content add-content">
+            <div class="add-column-content">
+              <label for="customer-name" class="modal-label"
+                >Customer Name
+                <p class="ast">&nbsp;*</p>
+              </label>
+              <input
+                type="text"
+                name="customer-name"
+                id="customer-name"
+                class="modal-input"
+              />
+              <label for="customer-number" class="modal-label"
+                >Customer No.
+                <p class="ast">&nbsp;*</p></label
+              >
+              <input
+                type="text"
+                name="customer-number"
+                id="customer-number"
+                class="modal-input"
+              />
+              <label for="invoice-number" class="modal-label"
+                >Invoice No.
+                <p class="ast">&nbsp;*</p></label
+              >
+              <input
+                type="text"
+                name="invoice-number"
+                id="invoice-number"
+                class="modal-input"
+              />
+              <label for="invoice-amt" class="modal-label"
+                >Invoice Amount
+                <p class="ast">&nbsp;*</p></label
+              >
+              <input
+                type="text"
+                name="invoice-amt"
+                id="invoice-amt"
+                class="modal-input"
+              />
+            </div>
+
+            <div class="add-column-content">
+              <label for="due-date" class="modal-label"
+                >Due Date
+                <p class="ast">&nbsp;*</p>
+              </label>
+              <input
+                type="date"
+                id="due-date"
+                name="due-date"
+                class="modal-input due-date"
+              />
+              <label for="add-notes" class="modal-label modal-label-notes"
+                >Notes</label
+              >
+              <textarea
+                type="text"
+                id="add-notes"
+                rows="10"
+                cols="30"
+                class="modal-input"
+              ></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="modal-cancel">
+              <button class="btn-outline modal-cancel-btn">Cancel</button>
+            </div>
+            <div class="modal-other">
+              <input type="reset" class="btn-outline" value="clear" />
+              <input type="submit" class="btn-solid add-post-btn" value="add" />
+            </div>
+          </div>
+        </form>
+        <!-- edit modal -->
+        <div class="modal">
+          <div class="modal-header">
+            <div class="modal-heading">Edit Invoice</div>
+            <div class="modal-icon modal-close-btn">
+              <img
+                src="./assets/images/baseline-close-24px.svg"
+                alt=""
+                class="modal-img"
+              />
+            </div>
+          </div>
+          <div class="modal-content edit-content">
+            <label for="edit-invoice-amt" class="modal-label"
+              >Invoice Amount</label
+            >
+            <input type="text" id="edit-invoice-amt" class="modal-input" />
+            <label for="edit-notes" class="modal-label modal-label-notes"
+              >Notes</label
+            >
+            <textarea
+              type="text"
+              id="edit-notes"
+              rows="10"
+              cols="50"
+              class="modal-input"
+            ></textarea>
+          </div>
+          <div class="modal-footer">
+            <div class="modal-cancel">
+              <button class="btn-outline modal-cancel-btn">Cancel</button>
+            </div>
+            <div class="modal-other">
+              <button class="btn-outline">Reset</button>
+              <button class="btn-solid">Save</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script type="text/javascript" src="./assets/js/data.js"></script>
+    <script type="text/javascript" src="./assets/js/main.js"></script>
+  </body>
+</html>
